@@ -25,7 +25,7 @@ for child in root:
 closed_strings = ["Aufgrund der aktuellen Situation bis auf Weiteres geschlossen.", "geschlossen",
                   "Aufgrund der aktuellen Situation bieten wir bis auf Weiteres nur to-go Speisen & Gerichte auf K5 an. | Unser aktuelles Angebot finden Sie auch unter seezeit.com/coronavirus/hg."]
 
-message = "d"
+message = ""
 for item in today_root:
     category = item.find('category').text
     title = item.find('title').text

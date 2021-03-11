@@ -30,6 +30,7 @@ icon_strings = {'24' : ':leafy_green:',
                 '45' : ':pig:',
                 '46' : ':cow:',
                 '49' : ':chicken:',
+                '50' : ':fish:',
                 '51' : ':carrot:',
                 'Lamm?' : ':sheep:',
                 'Wild?' : ':deer:'}

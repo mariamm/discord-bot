@@ -27,7 +27,7 @@ closed_strings = ["Aufgrund der aktuellen Situation bis auf Weiteres geschlossen
 
 
 icon_strings = {'24' : ':leafy_green:', 
-                '45' : ':pig',
+                '45' : ':pig:',
                 '46' : ':cow:',
                 '49' : ':chicken:',
                 '51' : ':carrot:',

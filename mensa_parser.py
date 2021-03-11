@@ -25,12 +25,29 @@ for child in root:
 closed_strings = ["Aufgrund der aktuellen Situation bis auf Weiteres geschlossen.", "geschlossen",
                   "Aufgrund der aktuellen Situation bieten wir bis auf Weiteres nur to-go Speisen & Gerichte auf K5 an. | Unser aktuelles Angebot finden Sie auch unter seezeit.com/coronavirus/hg."]
 
+
+icon_strings = {'24' : ':leafy_green:', 
+                '45' : ':pig',
+                '46' : ':cow:',
+                '49' : ':chicken:',
+                '51' : ':carrot:',
+                'Lamm?' : ':sheep:',
+                'Wild?' : ':deer:'}
+
 message = ""
 for item in today_root:
     category = item.find('category').text
     title = item.find('title').text
+    icons = item.find('icons').text
+    icons_list = []
+    if icons:
+        icons_list = icons.split(',')
+        
     if title not in closed_strings:
-        message = message + "***"+category+"***" + '\n' + title + '\n'
+        icon_str = ""
+        if icons_list and (icons_list[-1] in icon_strings) : 
+            icon_str = '\n' + icon_strings.get(icons_list[-1])
+        message = message + "***"+category+"***" + '\n' + title + icon_str + '\n'
         print(message)
         
 
@@ -43,7 +60,6 @@ import discord
 CHANNEL = "mensa-bot"
 client = discord.Client()
 TOKEN = sys.argv[1]
-
 @client.event
 async def on_ready():
     for channel in client.get_all_channels():

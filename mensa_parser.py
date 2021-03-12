@@ -17,12 +17,12 @@ today = datetime.date.today()
 today_root = None
 for child in root:
     child_timestamp = child.attrib['timestamp']
-    child_timestamp_ = datetime.datetime.fromtimestamp(int(child_timestamp)+6000).date()
+    child_timestamp_ = datetime.datetime.fromtimestamp(int(child_timestamp)+6200).date()
     if child_timestamp_ == today:
         today_root = child
         break
     
-closed_strings = ["Aufgrund der aktuellen Situation bis auf Weiteres geschlossen.", "geschlossen",
+closed_strings = ["Aufgrund der aktuellen Situation bis auf Weiteres geschlossen.", "geschlossen", "closed", 
                   "Aufgrund der aktuellen Situation bieten wir bis auf Weiteres nur to-go Speisen & Gerichte auf K5 an. | Unser aktuelles Angebot finden Sie auch unter seezeit.com/coronavirus/hg."]
 
 
@@ -47,8 +47,8 @@ for item in today_root:
     if title not in closed_strings:
         icon_str = ""
         if icons_list and (icons_list[-1] in icon_strings) : 
-            icon_str = '\n' + icon_strings.get(icons_list[-1])
-        message = message + "***"+category+"***" + '\n' + title + icon_str + '\n'
+            icon_str = ' ' + icon_strings.get(icons_list[-1])
+        message = message + "***"+category+"***" + icon_str + '\n' + title + '\n'
         print(message)
         
 

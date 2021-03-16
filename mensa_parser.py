@@ -21,6 +21,9 @@ for child in root:
     if child_timestamp_ == today:
         today_root = child
         break
+        
+if today_root is None:
+    exit()
     
 closed_strings = ["Aufgrund der aktuellen Situation bis auf Weiteres geschlossen.", "geschlossen", "closed", 
                   "Aufgrund der aktuellen Situation bieten wir bis auf Weiteres nur to-go Speisen & Gerichte auf K5 an. | Unser aktuelles Angebot finden Sie auch unter seezeit.com/coronavirus/hg."]
@@ -36,6 +39,7 @@ icon_strings = {'24' : ':leafy_green:',
                 'Wild?' : ':deer:'}
 
 message = ""
+
 for item in today_root:
     category = item.find('category').text
     title = item.find('title').text
@@ -45,11 +49,12 @@ for item in today_root:
         icons_list = icons.split(',')
         
     if title not in closed_strings:
-        icon_str = ""
-        if icons_list and (icons_list[-1] in icon_strings) : 
-            icon_str = ' ' + icon_strings.get(icons_list[-1])
+        icon_str = ''
+        for i in icons_list: 
+            icon_str += ' ' + icon_strings.get(i, '')
         message = message + "***"+category+"***" + icon_str + '\n' + title + '\n'
-        print(message)
+
+print(message)
         
 
 if message == "":

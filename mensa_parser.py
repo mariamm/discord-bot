@@ -17,7 +17,7 @@ today = datetime.date.today()
 today_root = None
 for child in root:
     child_timestamp = child.attrib['timestamp']
-    child_timestamp_ = datetime.datetime.fromtimestamp(int(child_timestamp)+6200).date()
+    child_timestamp_ = datetime.datetime.fromtimestamp(int(child_timestamp)+8000).date()
     if child_timestamp_ == today:
         today_root = child
         break

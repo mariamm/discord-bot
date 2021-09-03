@@ -56,7 +56,8 @@ for item in today_root:
         message = message + "***"+category+"***" + icon_str + '\n' + title + '\n'
 
 print(message)
-        
+# Remove allergies with regex pattern, and join together the string's extra spaces
+message = " ".join(re.sub("\([0-9]+(\S*)\)", '', message).split())        
 
 if message == "":
     exit()

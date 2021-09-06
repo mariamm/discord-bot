@@ -2,6 +2,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 import datetime 
 import sys
+import re
 
 assert(len(sys.argv) == 2)
 xml_file = urllib.request.urlopen('http://www.max-manager.de/daten-extern/seezeit/xml/mensa_giessberg/speiseplan.xml')
@@ -55,9 +56,9 @@ for item in today_root:
             icon_str += ' ' + icon_strings.get(i, '')
         message = message + "***"+category+"***" + icon_str + '\n' + title + '\n'
 
-print(message)
-# Remove allergies with regex pattern, and join together the string's extra spaces
-message = " ".join(re.sub("\([0-9]+(\S*)\)", '', message).split())        
+# Remove allergies with regex pattern
+message = re.sub(" \([0-9]+(\S*)\)", '', message)
+print(message)     
 
 if message == "":
     exit()
@@ -80,4 +81,3 @@ try:
 except:
     print("Error")
     exit(0)
-    
